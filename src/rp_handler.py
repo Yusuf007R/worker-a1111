@@ -40,7 +40,8 @@ def run_inference(input):
     """
     Run inference on a request.
     """
-    response = automatic_session.request(method = input['method'], url= f"{LOCAL_URL}/{input['url']}",  data=  input['data'] , timeout = input['timeout'])
+    print(input)
+    response = automatic_session.request(method = input['method'], url= f"{LOCAL_URL}/{input['endpoint']}",  data=  input['data'] , timeout = input['timeout'])
 
     return response.json()
 
