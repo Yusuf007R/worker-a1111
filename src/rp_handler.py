@@ -1,6 +1,7 @@
 import time
-import runpod
+
 import requests
+import runpod
 from requests.adapters import HTTPAdapter, Retry
 
 LOCAL_URL = "http://127.0.0.1:3000/sdapi/v1"
@@ -35,12 +36,12 @@ def wait_for_service(url):
         time.sleep(0.2)
 
 
-def run_inference(inference_request):
+def run_inference(input):
     """
     Run inference on a request.
     """
-    response = automatic_session.post(url=f'{LOCAL_URL}/txt2img',
-                                      json=inference_request, timeout=600)
+    response = automatic_session.request(method = input['method'], url= f"{LOCAL_URL}/{input['url']}",  data=  input['data'] , timeout = input['timeout'])
+
     return response.json()
 
 
